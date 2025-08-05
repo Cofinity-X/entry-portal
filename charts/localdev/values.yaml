@@ -376,10 +376,6 @@ centralidp:
         - clientId: "sa-cl25-cx-3"
           clientSecret: "changeme"
     bpn: "BPNL00000003CRHK"
-    sharedidpMultitenancy:
-      urls:
-        - baseUrl: "http://sharedidp.tx.test"
-        - baseUrl: "http://sharedidp-2nd.tx.test"
     sharedidp: "http://sharedidp.tx.test"
 
 sharedidp:

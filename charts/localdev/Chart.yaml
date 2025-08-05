@@ -37,7 +37,7 @@ dependencies:
   - condition: centralidp.enabled
     name: centralidp
     alias: centralidp
-    repository: file://../centralidp
+    repository: https://eclipse-tractusx.github.io/charts/dev
     version: 4.2.0
   - condition: sharedidp.enabled
     name: sharedidp
