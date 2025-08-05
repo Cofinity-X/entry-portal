@@ -426,6 +426,54 @@ sharedidp:
           saCxOperator:
             clientSecret: "changeme"
 
+sharedidp-2:
+  enabled: true
+  keycloak:
+    nameOverride: "sharedidp-2"
+    replicaCount: 1
+    auth:
+      adminPassword: "adminconsolepwsharedidp"
+    postgresql:
+      nameOverride: "sharedidp-2-postgresql"
+      auth:
+        password: "dbpasswordsharedidp"
+        postgresPassword: "dbpasswordsharedidp"
+    ingress:
+      enabled: true
+      ingressClassName: "nginx"
+      hostname: "sharedidp-2.tx.test"
+      annotations:
+        nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
+        nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS"
+        nginx.ingress.kubernetes.io/cors-allow-origin: "http://sharedidp-2.tx.test"
+        nginx.ingress.kubernetes.io/enable-cors: "true"
+        nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
+        nginx.ingress.kubernetes.io/proxy-buffering: "on"
+        nginx.ingress.kubernetes.io/proxy-buffers-number: "20"
+        nginx.ingress.kubernetes.io/use-regex: "true"
+      tls: false
+  realmSeeding:
+    realms:
+      cxOperator:
+        sslRequired: "none"
+        centralidp: "http://centralidp.tx.test"
+        initialUser:
+          username: "cx-operator@tx.test"
+          password: "tractusx-umbr3lla!"
+        mailing:
+          host: "smtp.tx.test"
+          port: "587"
+          username: "smtp-user"
+          password: ""
+          from: "smtp@tx.test"
+          replyTo: "smtp@tx.test"
+      master:
+        serviceAccounts:
+          provisioning:
+            clientSecret: "changeme"
+          saCxOperator:
+            clientSecret: "changeme"
+
 postgresportal:
 # -- Additional PostgreSQL for backend development;
   # start port forwarding tunnel for database access, e.g.:
