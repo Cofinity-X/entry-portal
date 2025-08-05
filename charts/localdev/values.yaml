@@ -430,7 +430,7 @@ sharedidp:
           saCxOperator:
             clientSecret: "changeme"
 
-sharedidp-2:
+sharedidp-2nd:
   enabled: true
   keycloak:
     nameOverride: "sharedidp-2nd"
