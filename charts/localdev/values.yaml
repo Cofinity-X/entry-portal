@@ -376,6 +376,10 @@ centralidp:
         - clientId: "sa-cl25-cx-3"
           clientSecret: "changeme"
     bpn: "BPNL00000003CRHK"
+    sharedidpMultitenancy:
+      urls:
+        - baseUrl: "http://sharedidp.tx.test"
+        - baseUrl: "http://sharedidp-2nd.tx.test"
     sharedidp: "http://sharedidp.tx.test"
 
 sharedidp:
@@ -429,23 +433,23 @@ sharedidp:
 sharedidp-2:
   enabled: true
   keycloak:
-    nameOverride: "sharedidp-2"
+    nameOverride: "sharedidp-2nd"
     replicaCount: 1
     auth:
       adminPassword: "adminconsolepwsharedidp"
     postgresql:
-      nameOverride: "sharedidp-2-postgresql"
+      nameOverride: "sharedidp-2nd-postgresql"
       auth:
         password: "dbpasswordsharedidp"
         postgresPassword: "dbpasswordsharedidp"
     ingress:
       enabled: true
       ingressClassName: "nginx"
-      hostname: "sharedidp-2.tx.test"
+      hostname: "sharedidp-2nd.tx.test"
       annotations:
         nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
         nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS"
-        nginx.ingress.kubernetes.io/cors-allow-origin: "http://sharedidp-2.tx.test"
+        nginx.ingress.kubernetes.io/cors-allow-origin: "http://sharedidp-2nd.tx.test"
         nginx.ingress.kubernetes.io/enable-cors: "true"
         nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
         nginx.ingress.kubernetes.io/proxy-buffering: "on"
@@ -475,7 +479,7 @@ sharedidp-2:
             clientSecret: "changeme"
 
 postgresportal:
-# -- Additional PostgreSQL for backend development;
+  # -- Additional PostgreSQL for backend development;
   # start port forwarding tunnel for database access, e.g.:
   # 'kubectl port-forward service/local-portal-postgresql 5432:5432 -n umbrella'
   enabled: true
@@ -519,5 +523,5 @@ pgadmin4:
     hosts:
       - host: pgadmin4.tx.test
         paths:
-        - path: /
-          pathType: Prefix
+          - path: /
+            pathType: Prefix
