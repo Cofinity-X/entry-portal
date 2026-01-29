@@ -285,6 +285,9 @@ portal:
         enabled: false
       containerSecurityContext:
         enabled: false
+      persistence:
+        mountPath: /var/lib/postgresql
+    postgresqlDataDir: /var/lib/postgresql/data
     architecture: standalone
     auth:
       password: "dbpasswordportal"
@@ -309,6 +312,9 @@ centralidp:
           enabled: false
         containerSecurityContext:
           enabled: false
+        persistence:
+          mountPath: /var/lib/postgresql
+      postgresqlDataDir: /var/lib/postgresql/data
       auth:
         password: "dbpasswordcentralidp"
         postgresPassword: "dbpasswordcentralidp"
@@ -414,6 +420,9 @@ sharedidp:
           enabled: false
         containerSecurityContext:
           enabled: false
+        persistence:
+          mountPath: /var/lib/postgresql
+      postgresqlDataDir: /var/lib/postgresql/data
       auth:
         password: "dbpasswordsharedidp"
         postgresPassword: "dbpasswordsharedidp"
@@ -469,6 +478,9 @@ postgresportal:
       enabled: false
     containerSecurityContext:
       enabled: false
+    persistence:
+      mountPath: /var/lib/postgresql
+  postgresqlDataDir: /var/lib/postgresql/data
   auth:
     database: "postgres"
     port: 5432
