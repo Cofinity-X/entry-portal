@@ -276,6 +276,15 @@ portal:
                 port: 8080
   postgresql:
     nameOverride: "portal-backend-postgresql"
+    image:
+      registry: docker.io
+      repository: postgres
+      tag: "15-bookworm"
+    primary:
+      podSecurityContext:
+        enabled: false
+      containerSecurityContext:
+        enabled: false
     architecture: standalone
     auth:
       password: "dbpasswordportal"
@@ -291,6 +300,15 @@ centralidp:
       adminPassword: "adminconsolepwcentralidp"
     postgresql:
       nameOverride: "centralidp-postgresql"
+      image:
+        registry: docker.io
+        repository: postgres
+        tag: "15-bookworm"
+      primary:
+        podSecurityContext:
+          enabled: false
+        containerSecurityContext:
+          enabled: false
       auth:
         password: "dbpasswordcentralidp"
         postgresPassword: "dbpasswordcentralidp"
@@ -387,6 +405,15 @@ sharedidp:
       adminPassword: "adminconsolepwsharedidp"
     postgresql:
       nameOverride: "sharedidp-postgresql"
+      image:
+        registry: docker.io
+        repository: postgres
+        tag: "15-bookworm"
+      primary:
+        podSecurityContext:
+          enabled: false
+        containerSecurityContext:
+          enabled: false
       auth:
         password: "dbpasswordsharedidp"
         postgresPassword: "dbpasswordsharedidp"
@@ -432,6 +459,16 @@ postgresportal:
   # 'kubectl port-forward service/local-portal-postgresql 5432:5432 -n umbrella'
   enabled: true
   nameOverride: "portal-postgresql"
+  image:
+    registry: docker.io
+    repository: postgres
+    tag: "15-bookworm"
+  # -- Disable security context for official PostgreSQL image
+  primary:
+    podSecurityContext:
+      enabled: false
+    containerSecurityContext:
+      enabled: false
   auth:
     database: "postgres"
     port: 5432
